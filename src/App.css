@@ -1,0 +1,714 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap");
+
+:root {
+  --background: #101214;
+  --background-light: #17191c;
+  --gold: #b8955c;
+  --gold-light: #d0b27d;
+  --text: #eee9df;
+  --muted: #9c9a95;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+}
+
+button,
+a {
+  font-family: inherit;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+.birthday-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(184, 149, 92, 0.1),
+      transparent 30%
+    ),
+    var(--background);
+}
+
+/* -------------------------------- */
+/* TEXTURE                           */
+/* -------------------------------- */
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 20;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* -------------------------------- */
+/* HEADER                            */
+/* -------------------------------- */
+
+.header {
+  position: relative;
+  z-index: 2;
+
+  width: min(1250px, calc(100% - 80px));
+  margin: auto;
+  padding-top: 36px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+}
+
+.header-mark {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(184, 149, 92, 0.7);
+  border-radius: 50%;
+
+  color: var(--gold-light);
+
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+
+  letter-spacing: 0;
+}
+
+.header-line {
+  height: 1px;
+  width: 170px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.header-date {
+  opacity: 0.65;
+}
+
+/* -------------------------------- */
+/* HERO                              */
+/* -------------------------------- */
+
+.hero {
+  position: relative;
+
+  width: min(1250px, calc(100% - 80px));
+  min-height: calc(100vh - 100px);
+
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+
+  align-items: center;
+
+  gap: 80px;
+
+  padding-bottom: 80px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  animation: heroEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------- */
+/* TYPOGRAPHY                        */
+/* -------------------------------- */
+
+.eyebrow,
+.reveal-label {
+  color: var(--gold-light);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  letter-spacing: 0.28em;
+
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(70px, 9vw, 130px);
+
+  font-weight: 500;
+
+  letter-spacing: -0.055em;
+
+  line-height: 0.86;
+}
+
+.hero h1 span {
+  display: block;
+
+  color: var(--gold);
+
+  font-style: italic;
+
+  margin-left: 0.35em;
+}
+
+.hero-text {
+  max-width: 470px;
+
+  margin-top: 42px;
+
+  color: var(--muted);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+/* -------------------------------- */
+/* BUTTON                            */
+/* -------------------------------- */
+
+.discover-button {
+  margin-top: 45px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 15px;
+
+  border: none;
+
+  background: none;
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  text-transform: uppercase;
+
+  font-size: 10px;
+
+  letter-spacing: 0.15em;
+}
+
+.discover-circle {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--gold);
+
+  border-radius: 50%;
+
+  color: var(--gold);
+
+  font-size: 19px;
+
+  transition: 0.35s ease;
+}
+
+.discover-button:hover .discover-circle {
+  background: var(--gold);
+
+  color: var(--background);
+
+  transform: rotate(45deg);
+}
+
+/* -------------------------------- */
+/* BIRTHDAY CARD                     */
+/* -------------------------------- */
+
+.birthday-card {
+  position: relative;
+
+  width: min(390px, 75vw);
+
+  aspect-ratio: 0.72;
+
+  justify-self: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 45%),
+    #171a1d;
+
+  border: 1px solid rgba(184, 149, 92, 0.45);
+
+  box-shadow: 25px 35px 90px rgba(0, 0, 0, 0.5);
+
+  transform: rotate(6deg);
+
+  transition:
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1s ease;
+
+  animation: cardEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(6deg);
+  }
+}
+
+.birthday-card:hover {
+  transform: translateY(-12px) rotate(3deg);
+}
+
+.birthday-card.revealed {
+  transform: scale(1.04) rotate(0deg);
+
+  box-shadow: 0 40px 100px rgba(184, 149, 92, 0.12);
+}
+
+.card-border {
+  position: absolute;
+
+  inset: 14px;
+
+  border: 1px solid rgba(184, 149, 92, 0.18);
+}
+
+.card-top {
+  position: absolute;
+
+  top: 42px;
+
+  color: #74736f;
+
+  font-size: 8px;
+
+  letter-spacing: 0.35em;
+}
+
+.card-number {
+  position: absolute;
+
+  top: 28px;
+  right: 34px;
+
+  color: var(--gold);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 18px;
+}
+
+.card-center {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #777;
+
+  font-size: 10px;
+
+  letter-spacing: 0.28em;
+}
+
+.card-line {
+  width: 80px;
+
+  height: 1px;
+
+  margin: 12px 0;
+
+  background: rgba(184, 149, 92, 0.5);
+}
+
+.card-bottom {
+  position: absolute;
+
+  bottom: 38px;
+
+  color: #777;
+
+  font-size: 9px;
+
+  letter-spacing: 0.3em;
+}
+
+/* -------------------------------- */
+/* REVEAL                            */
+/* -------------------------------- */
+
+.reveal-section {
+  position: relative;
+
+  width: min(1250px, calc(100% - 80px));
+
+  margin: 0 auto;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition:
+    max-height 1s ease,
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal-section.visible {
+  max-height: 600px;
+
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.reveal-inner {
+  padding: 75px 0 90px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 80px;
+}
+
+.reveal-inner h2 {
+  margin: 25px 0 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-weight: 500;
+
+  font-size: clamp(42px, 5vw, 70px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+}
+
+.reveal-inner h2 em {
+  color: var(--gold);
+
+  font-style: italic;
+}
+
+.reveal-inner p {
+  max-width: 450px;
+
+  margin: 55px 0 30px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* -------------------------------- */
+/* DOWNLOAD                          */
+/* -------------------------------- */
+
+.gift-button {
+  width: min(450px, 100%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 19px 21px;
+
+  border: 1px solid rgba(184, 149, 92, 0.6);
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  text-transform: uppercase;
+
+  font-size: 10px;
+
+  letter-spacing: 0.15em;
+
+  transition: 0.3s ease;
+}
+
+.gift-button:hover {
+  background: var(--gold);
+
+  color: var(--background);
+}
+
+.gift-arrow {
+  font-size: 19px;
+}
+
+/* -------------------------------- */
+/* FOOTER                            */
+/* -------------------------------- */
+
+.footer {
+  width: min(1250px, calc(100% - 80px));
+
+  margin: auto;
+
+  padding: 25px 0 35px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  color: #666;
+
+  font-size: 9px;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.footer-dot {
+  color: var(--gold);
+}
+
+/* -------------------------------- */
+/* MOBILE                            */
+/* -------------------------------- */
+
+@media (max-width: 800px) {
+  .header,
+  .hero,
+  .reveal-section,
+  .footer {
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* HEADER */
+
+  .header {
+    justify-content: center;
+    padding-top: 24px;
+  }
+
+  .header-line {
+    width: 45px;
+    flex: 0 0 45px;
+  }
+
+  /* HERO */
+
+  .hero {
+    min-height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 70px;
+
+    padding-top: 90px;
+    padding-bottom: 80px;
+
+    text-align: center;
+  }
+
+  .hero-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 25px;
+  }
+
+  .hero h1 {
+    width: 100%;
+
+    font-size: clamp(58px, 17vw, 90px);
+
+    line-height: 0.9;
+
+    text-align: center;
+  }
+
+  .hero h1 span {
+    margin-left: 0;
+  }
+
+  .hero-text {
+    max-width: 330px;
+
+    margin-top: 32px;
+
+    text-align: center;
+
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* BUTTON */
+
+  .discover-button {
+    margin-top: 38px;
+
+    justify-content: center;
+  }
+
+  /* CARD */
+
+  .birthday-card {
+    width: min(280px, 75vw);
+
+    margin: 0 auto;
+
+    justify-self: auto;
+
+    transform: rotate(4deg);
+  }
+
+  .birthday-card:hover {
+    transform: translateY(-8px) rotate(2deg);
+  }
+
+  .birthday-card.revealed {
+    transform: scale(1.03) rotate(0deg);
+  }
+
+  /* REVEAL */
+
+  .reveal-section {
+    text-align: center;
+  }
+
+  .reveal-inner {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 0;
+
+    padding: 60px 0 70px;
+  }
+
+  .reveal-label {
+    text-align: center;
+  }
+
+  .reveal-inner h2 {
+    width: 100%;
+
+    margin-top: 22px;
+
+    font-size: clamp(40px, 11vw, 62px);
+
+    line-height: 0.98;
+
+    text-align: center;
+  }
+
+  .reveal-inner p {
+    max-width: 330px;
+
+    margin: 32px auto 30px;
+
+    text-align: center;
+
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* DOWNLOAD */
+
+  .gift-button {
+    width: min(330px, 100%);
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FOOTER */
+
+  .footer {
+    align-items: center;
+    justify-content: center;
+
+    padding-bottom: 30px;
+
+    text-align: center;
+  }
+}
