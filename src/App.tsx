@@ -1,9 +1,6 @@
-import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [revealed, setRevealed] = useState(false);
-
   return (
     <main className="birthday-page">
       {/* Texture */}
@@ -34,20 +31,18 @@ function App() {
             Et comme promis, voici ton cadeau et j'espere qu'il te plaira !
           </p>
 
-          {!revealed && (
-            <button
-              className="discover-button"
-              onClick={() => setRevealed(true)}
-            >
-              <span className="discover-circle">→</span>
-
-              <span>Découvrir ton cadeau</span>
-            </button>
-          )}
+          <a
+            href="/28092026_TICKETS_C582E2243475O43402.pdf"
+            download="cadeau-anniversaire.pdf"
+            className="discover-button"
+          >
+            <span>Télécharger ton cadeau</span>
+            <span className="gift-arrow">↓</span>
+          </a>
         </div>
 
         {/* Visuel */}
-        <div className={`birthday-card ${revealed ? "revealed" : ""}`}>
+        <div className={`birthday-card`}>
           <div className="card-border" />
 
           <div className="card-top">POUR TOI</div>
@@ -62,33 +57,6 @@ function App() {
           </div>
 
           <div className="card-bottom">2026</div>
-        </div>
-      </section>
-
-      {/* REVELATION */}
-      <section className={`reveal-section ${revealed ? "visible" : ""}`}>
-        <div className="reveal-inner">
-          <div className="reveal-label">TON CADEAU</div>
-
-          <h2>
-            Une expérience
-            <br />
-            <em>rien que pour toi.</em>
-          </h2>
-
-          <p>
-            Parce qu'un bon cadeau ne se résume pas à ce qu'on reçoit, mais
-            surtout au souvenir qu'on en garde.
-          </p>
-
-          <a
-            href="/cadeau.pdf"
-            download="cadeau-anniversaire.pdf"
-            className="gift-button"
-          >
-            <span>Télécharger ton cadeau</span>
-            <span className="gift-arrow">↓</span>
-          </a>
         </div>
       </section>
 
